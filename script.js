@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Header scroll behavior
+  // Mobile Menu Toggle
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  
+  mobileMenuBtn.addEventListener('click', function() {
+    navLinks.classList.toggle('active');
+    this.setAttribute('aria-expanded', navLinks.classList.contains('active'));
+  });
+
+  // Header Scroll Behavior
   const header = document.querySelector('.navbar');
   let lastScroll = 0;
   
@@ -22,7 +31,43 @@ document.addEventListener('DOMContentLoaded', function() {
     lastScroll = currentScroll;
   });
 
-  // Smooth scrolling for all anchor links
+  // Typing Effect
+  const texts = ["Regular Cleaning", "Deep Cleaning", "One-Off Cleaning", "Commercial Cleaning"];
+  let index = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+  let typingSpeed = 100;
+  
+  function typeText() {
+    const currentText = texts[index];
+    const textElement = document.getElementById("service-text");
+    
+    if (isDeleting) {
+      textElement.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+      typingSpeed = 50;
+    } else {
+      textElement.textContent = currentText.substring(0, charIndex + 1);
+      charIndex++;
+      typingSpeed = 100;
+    }
+
+    if (!isDeleting && charIndex === currentText.length) {
+      isDeleting = true;
+      typingSpeed = 1500;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      index = (index + 1) % texts.length;
+      typingSpeed = 500;
+    }
+
+    setTimeout(typeText, typingSpeed);
+  }
+
+  // Start typing effect
+  setTimeout(typeText, 1000);
+
+  // Smooth Scrolling
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -34,73 +79,41 @@ document.addEventListener('DOMContentLoaded', function() {
           top: targetElement.offsetTop - 80,
           behavior: 'smooth'
         });
+        
+        // Close mobile menu if open
+        if (navLinks.classList.contains('active')) {
+          navLinks.classList.remove('active');
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
       }
     });
   });
 
-  // reCAPTCHA handling
-  window.enableSubmit = function() {
-    document.querySelector('.submit-btn').disabled = false;
-  };
-
-  // Form submission handling
+  // Form Submission
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Validate form
+      // Simple validation
       const name = document.getElementById('name').value.trim();
       const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
       const message = document.getElementById('message').value.trim();
       
-      if (!name || !email || !phone || !message) {
-        alert('Please fill in all fields');
+      if (!name || !email || !message) {
+        alert('Please fill in all required fields');
         return;
       }
       
-      // Here you would typically send the form data to your server
-      console.log('Form submitted:', { name, email, phone, message });
-      
-      // Show success message
+      // Simulate form submission
+      console.log('Form submitted:', { name, email, message });
       alert('Thank you for your message! We will contact you soon.');
-      
-      // Reset form
       this.reset();
-      document.querySelector('.submit-btn').disabled = true;
-      
-      // Reset reCAPTCHA
-      if (typeof grecaptcha !== 'undefined') {
-        grecaptcha.reset();
-      }
     });
   }
 
-  // Hero background animation
-  const heroBg = document.querySelector('.hero-bg');
-  let scaleDirection = 1;
-  
-  function animateHeroBg() {
-    const currentScale = parseFloat(getComputedStyle(heroBg).transform.split(',')[3]) || 1;
-    
-    if (currentScale >= 1.1) scaleDirection = -1;
-    if (currentScale <= 1) scaleDirection = 1;
-    
-    const newScale = currentScale + (0.001 * scaleDirection);
-    heroBg.style.transform = `scale(${newScale})`;
-    
-    requestAnimationFrame(animateHeroBg);
-  }
-  
-  // Start the animation
-  setTimeout(() => {
-    heroBg.style.transition = 'transform 0.1s linear';
-    animateHeroBg();
-  }, 1000);
-
-  // Add animation to cards when they come into view
-  const animateOnScroll = function() {
+  // Animation on Scroll
+  function animateOnScroll() {
     const cards = document.querySelectorAll('.card, .reason-card');
     
     cards.forEach(card => {
@@ -112,19 +125,19 @@ document.addEventListener('DOMContentLoaded', function() {
         card.style.transform = 'translateY(0)';
       }
     });
-  };
+  }
 
-  // Set initial state for animation
-  const cards = document.querySelectorAll('.card, .reason-card');
-  cards.forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(20px)';
-    card.style.transition = 'all 0.6s ease';
+  // Initialize animations
+  const animatedElements = document.querySelectorAll('.card, .reason-card');
+  animatedElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'all 0.6s ease';
   });
 
-  // Run once on load
+  // Run on load and scroll
   animateOnScroll();
-  
-  // Run on scroll
-  window.addEventListener('scroll', animateOnScroll);
+  window.addEventListener('scroll', function() {
+    window.requestAnimationFrame(animateOnScroll);
+  });
 });
