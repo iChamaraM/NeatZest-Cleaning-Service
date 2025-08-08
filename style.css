@@ -46,12 +46,16 @@ body {
 }
 
 .contact-btn {
-  background-color: #1C5AE5;
+  background-color: #FFD166;
   color: white;
   padding: 0.5rem 1.5rem;
   border-radius: 6px;
   font-weight: 500;
   transition: all 0.3s;
+}
+
+.contact-btn a {
+  color: white;
 }
 
 .contact-btn:hover {
