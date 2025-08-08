@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NeatZest Cleaning Services</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=DM+Sans&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=DM+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="icon" href="assets/images/neatzest-favicon.png" type="image/png">
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
   <header class="navbar">
-    <div class="logo"><img src="assets/Images/neatzest-primary.png" alt="NeatZest Logo"></div>
+    <div class="logo"><img src="assets/Images/neatzest-primary.png" alt="NeatZest Logo" loading="lazy"></div>
     <nav class="center-nav">
       <ul class="nav-links">
         <li><a href="#">Home</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
-    <div class="contact-container">
-      <a href="#contact" class="contact-btn">Contact</a>
-    </div>
+    <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
   </header>
 
   <section class="hero">
-    <div class="hero-bg"></div>
+    <div class="hero-bg">
+      <img src="assets/images/hero-image-new.png" alt="Professional Cleaners" class="cleaners-image" loading="lazy">
+    </div>
     <div class="hero-content">
-      <h1>Plan Your Weekend,<br><span class="hero-accent">Let's Handle Your Cleaning</span></h1>
+      <h1>Affordable Cleaning Services<br>You Can Trust</h1>
+      <div class="services-typing">
+        <span id="service-text"></span><span class="cursor">|</span>
+      </div>
       <div class="hero-buttons">
-        <a href="#booking" class="btn">Book Now</a>
-        <a href="#services" class="view-services-btn">
-          View Services <i class="fas fa-arrow-down"></i>
-        </a>
+        <a href="#services" class="btn">Book Now</a>
       </div>
     </div>
   </section>
@@ -43,28 +43,28 @@
       <h2>Our Cleaning Services</h2>
       <div class="services">
         <div class="card">
-          <img src="assets/images/regular-cleaning.jpg" alt="Regular Cleaning">
+          <img src="assets/images/regular-cleaning.jpg" alt="Regular Cleaning" loading="lazy">
           <h3>Regular Cleaning</h3>
           <p class="card-text">Routine cleaning to maintain your space spotless.</p>
-          <a href="#booking" class="btn">Book Now</a>
+          <a href="booking.html?service=regular" class="btn">Book Now</a>
         </div>
         <div class="card">
-          <img src="assets/images/deep-cleaning.jpg" alt="Deep Cleaning">
+          <img src="assets/images/deep-cleaning.jpg" alt="Deep Cleaning" loading="lazy">
           <h3>Deep Cleaning</h3>
           <p class="card-text">Thorough cleaning for a healthier environment.</p>
-          <a href="#booking" class="btn">Book Now</a>
+          <a href="booking.html?service=deep" class="btn">Book Now</a>
         </div>
         <div class="card">
-          <img src="assets/images/one-off-cleaning.jpg" alt="One-Off Cleaning">
+          <img src="assets/images/one-off-cleaning.jpg" alt="One-Off Cleaning" loading="lazy">
           <h3>One-Off Cleaning</h3>
           <p class="card-text">Perfect for special occasions or spring cleaning.</p>
-          <a href="#booking" class="btn">Book Now</a>
+          <a href="booking.html?service=one-off" class="btn">Book Now</a>
         </div>
         <div class="card">
-          <img src="assets/images/commercial-cleaning.jpg" alt="Commercial Cleaning">
+          <img src="assets/images/commercial-cleaning.jpg" alt="Commercial Cleaning" loading="lazy">
           <h3>Commercial Cleaning</h3>
           <p class="card-text">Professional cleaning for offices and businesses.</p>
-          <a href="#booking" class="btn">Book Now</a>
+          <a href="booking.html?service=commercial" class="btn">Book Now</a>
         </div>
       </div>
     </section>
@@ -95,12 +95,39 @@
       </div>
     </section>
 
+    <section class="about-section">
+      <div class="about-container">
+        <div class="about-image">
+          <img src="assets/images/about-team.jpg" alt="Our Cleaning Team" loading="lazy">
+        </div>
+        <div class="about-content">
+          <h2>About NeatZest</h2>
+          <p>Founded in 2015, NeatZest has been providing top-quality cleaning services to both residential and commercial clients. Our team of dedicated professionals takes pride in delivering exceptional results with every clean.</p>
+          <div class="about-features">
+            <div class="feature">
+              <i class="fas fa-check"></i>
+              <span>100+ Happy Clients</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-check"></i>
+              <span>5 Years Experience</span>
+            </div>
+            <div class="feature">
+              <i class="fas fa-check"></i>
+              <span>Eco-Friendly Products</span>
+            </div>
+          </div>
+          <a href="#contact" class="btn">Learn More</a>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="contact-section">
       <h2>Get In Touch</h2>
       <div class="contact-container">
         <div class="contact-info">
           <h3>Get on top of your cleaning needs</h3>
-          <p>Fill in the form with what you need; we'll take care of the details. Our team will respond within 24 hours to discuss your cleaning requirements.</p>
+          <p>Fill in the form with what you need; we'll take care of the details. Our team will respond within 24 hours.</p>
           <div class="contact-features">
             <div class="feature">
               <i class="fas fa-check-circle"></i>
@@ -129,14 +156,54 @@
           <div class="form-group">
             <textarea id="message" name="message" required placeholder="Your Cleaning Needs"></textarea>
           </div>
-          <div class="form-group">
-            <div class="g-recaptcha" data-sitekey="6Le3Ap4rAAAAAA1jPgjy4mS7f0OhK6V0DSbjFWZ9"></div>
-          </div>
-          <button type="submit" class="btn submit-btn" disabled>Send Message</button>
+          <button type="submit" class="btn submit-btn">Send Message</button>
         </form>
       </div>
     </section>
   </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>NeatZest</h3>
+        <p>Professional cleaning services you can trust for your home or business.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="booking.html?service=regular">Regular Cleaning</a></li>
+          <li><a href="booking.html?service=deep">Deep Cleaning</a></li>
+          <li><a href="booking.html?service=one-off">One-Off Cleaning</a></li>
+          <li><a href="booking.html?service=commercial">Commercial Cleaning</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> 123 Clean St, City</li>
+          <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+          <li><i class="fas fa-envelope"></i> info@neatzest.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 NeatZest Cleaning Services. All rights reserved.</p>
+    </div>
+  </footer>
 
   <script src="script.js"></script>
 </body>
