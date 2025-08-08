@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Your Cleaning | NeatZest</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=DM+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="icon" href="assets/images/neatzest-favicon.png" type="image/png">
+  <!-- Calendly embed -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><img src="assets/Images/neatzest-primary.png" alt="NeatZest Logo"></div>
+    <nav class="center-nav">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#services">Services</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="mobile-menu-btn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+  </header>
+
+  <section class="booking-hero">
+    <div class="booking-content">
+      <h1 id="service-title">Book Your Cleaning Service</h1>
+      <p>Select your preferred date and time below</p>
+    </div>
+  </section>
+
+  <div class="booking-container">
+    <div id="calendly-embed" style="min-height: 700px;"></div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3>NeatZest</h3>
+        <p>Professional cleaning services you can trust for your home or business.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#services">Services</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="booking.html?service=regular">Regular Cleaning</a></li>
+          <li><a href="booking.html?service=deep">Deep Cleaning</a></li>
+          <li><a href="booking.html?service=one-off">One-Off Cleaning</a></li>
+          <li><a href="booking.html?service=commercial">Commercial Cleaning</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Contact</h3>
+        <ul>
+          <li><i class="fas fa-map-marker-alt"></i> 123 Clean St, City</li>
+          <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+          <li><i class="fas fa-envelope"></i> info@neatzest.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>&copy; 2023 NeatZest Cleaning Services. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Get service type from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const service = urlParams.get('service');
+    
+    // Update title based on service
+    if(service) {
+      const titles = {
+        'regular': 'Regular Cleaning',
+        'deep': 'Deep Cleaning', 
+        'one-off': 'One-Off Cleaning',
+        'commercial': 'Commercial Cleaning'
+      };
+      document.getElementById('service-title').textContent = `Book ${titles[service]}`;
+    }
+
+    // Load Calendly widget
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendlyLinks = {
+        'regular': 'https://calendly.com/your-calendly/regular-cleaning',
+        'deep': 'https://calendly.com/your-calendly/deep-cleaning',
+        'one-off': 'https://calendly.com/your-calendly/one-off-cleaning',
+        'commercial': 'https://calendly.com/your-calendly/commercial-cleaning'
+      };
+      
+      Calendly.initInlineWidget({
+        url: service ? calendlyLinks[service] : 'https://calendly.com/your-calendly',
+        parentElement: document.getElementById('calendly-embed'),
+        prefill: {},
+        utm: {}
+      });
+    });
+  </script>
+</body>
+</html>
